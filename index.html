@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .contador{
+            display: flex;
+            width: 60%;
+            margin: 0 auto;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .contador .box{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .contador .number, .number-four{
+            font-size: 60px;
+            font-weight: bold;
+            font-family: 'Open Sans', sans-serif;
+            position: relative;
+        }
+        .contador .number:after{
+            content: ':';
+            position: absolute;
+            top: 0;
+            left: 180%;
+        }
+        .contador .number-four:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 150%;
+        }
+        .contador  h4{
+            font-family: 'Open Sans', sans-serif;
+            font-size: 25px;
+            margin-top:10px
+        }
+    </style>
+</head>
+<body>
+    
+        <span id="countdown" class="timer"></span>
+<script>
+ var upgradeTime = 864000; //10 días
+var seconds = upgradeTime;
+function timer() {
+  var days        = Math.floor(seconds/24/60/60);
+  var hoursLeft   = Math.floor((seconds) - (days*86400));
+  var hours       = Math.floor(hoursLeft/3600);
+  var minutesLeft = Math.floor((hoursLeft) - (hours*3600));
+  var minutes     = Math.floor(minutesLeft/60);
+  var remainingSeconds = seconds % 60;
+  function pad(n) {
+    return (n < 10 ? "0" + n : n);
+  }
+  document.getElementById('countdown').innerHTML = "<div class='contador'><div class='box'><span class='number'>"+pad(days)+"</span><h4>Días</h4></div>"  + "<div class='box'><span class='number'>"+pad(hours)+"</span><h4>Hours</h4></div>" + "<div class='box'><span class='number'>"+pad(minutes)+"</span><h4>Minutes</h4></div>" + "<div class='box'><span class='number-four'>"+pad(remainingSeconds)+"</span><h4>Secondes</h4></div></div>";
+  if (seconds == 0) {
+     seconds=upgradeTime;
+  } else {
+    seconds--;
+  }
+}
+var countdownTimer = setInterval('timer()', 1000);
+</script>
+  
+</body>
+</html>
